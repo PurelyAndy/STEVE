@@ -3,8 +3,8 @@
         xmlns:vm="using:AvaloniaApplication1.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="1000"
-        Width="900" Height="1000"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="1100"
+        Width="1000" Height="1100"
         x:Class="AvaloniaApplication1.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -13,13 +13,8 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <Canvas Width="900" Height="1000" Name="MainCanvas">
-        <Image Source="/Assets/blackjack.png" Canvas.Top="900" Canvas.Left="-50">
-            <Image.RenderTransform>
-                <RotateTransform Angle="135"/>
-            </Image.RenderTransform>
-        </Image>
-        <Grid Width="900" Height="1000" RowDefinitions="120 * * * * * 40" ColumnDefinitions="40 * * * * * 40" Name="MainGrid">
+    <Canvas Width="1000" Height="1100" Name="MainCanvas" Background="White">
+        <Grid Canvas.Left="50" Canvas.Top="10" Width="900" Height="1000" RowDefinitions="120 * * * * * 40" ColumnDefinitions="40 * * * * * 40" Name="MainGrid" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Text="S   T   E   V   E" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="110" PointerReleased="InputElement_OnPointerReleased"/>
         </Grid>
     </Canvas>

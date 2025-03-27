@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Documents;
@@ -25,9 +26,33 @@ public partial class MainWindow : Window
             MainCanvas.Children.RemoveAt(0);
         for (int i = 0; i < 20; i++)
         {
+            double degreesFrom90 = 30;
+            double rand1;
+            do
+            {
+                rand1 = Random.Shared.NextDouble() * 360;
+            } while (rand1 > 90 - degreesFrom90 && rand1 < 90 + degreesFrom90 || rand1 > 270 - degreesFrom90 && rand1 < 270 + degreesFrom90);
+            double rand2;
+            do
+            {
+                rand2 = Random.Shared.NextDouble() * 360;
+            } while (rand2 > 90 - degreesFrom90 && rand2 < 90 + degreesFrom90 || rand2 > 270 - degreesFrom90 && rand2 < 270 + degreesFrom90);
+            double rand3;
+            do
+            {
+                rand3 = Random.Shared.NextDouble() * 360;
+            } while (rand3 > 90 - degreesFrom90 && rand3 < 90 + degreesFrom90 || rand3 > 270 - degreesFrom90 && rand3 < 270 + degreesFrom90);
             Image img = new()
             {
                 Source = new Bitmap(AssetLoader.Open(new("avares://AvaloniaApplication1/Assets/blackjack.png"))),
+                RenderTransform = new Rotate3DTransform(
+                    rand1,
+                    rand2,
+                    rand3,
+                    0,
+                    0,
+                    0,
+                    220)
             };
             switch (i)
             {
@@ -35,10 +60,10 @@ public partial class MainWindow : Window
                     img.SetValue(Canvas.TopProperty, -40);
                     break;
                 case > 9 and < 17:
-                    img.SetValue(Canvas.TopProperty, 900);
+                    img.SetValue(Canvas.TopProperty, 950);
                     break;
                 default:
-                    img.SetValue(Canvas.TopProperty, -200 + (i % 5) * 208);
+                    img.SetValue(Canvas.TopProperty, -200 + (i % 5) * 218);
                     break;
             }
 
@@ -48,10 +73,10 @@ public partial class MainWindow : Window
                     img.SetValue(Canvas.LeftProperty, -50);
                     break;
                 case > 5 and < 11:
-                    img.SetValue(Canvas.LeftProperty, 800);
+                    img.SetValue(Canvas.LeftProperty, 850);
                     break;
                 default:
-                    img.SetValue(Canvas.LeftProperty, -50 + (i % 6) * 140);
+                    img.SetValue(Canvas.LeftProperty, -50 + (i % 6) * 148);
                     break;
             }
             MainCanvas.Children.Insert(0, img);
@@ -194,5 +219,18 @@ public partial class MainWindow : Window
     {
         if (e.InitialPressMouseButton == MouseButton.Left)
             RollBingo();
+        else
+        {
+            SaveScreenshot();
+        }
+    }
+
+    private void SaveScreenshot()
+    {
+        PixelSize size = new((int)MainCanvas.Bounds.Width, (int)MainCanvas.Bounds.Height);
+        RenderTargetBitmap renderTarget = new(size);
+        renderTarget.Render(MainCanvas);
+        using FileStream file = new("bingo.png", FileMode.Create);
+        renderTarget.Save(file, 100);
     }
 }
