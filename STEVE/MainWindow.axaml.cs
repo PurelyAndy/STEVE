@@ -103,7 +103,7 @@ public partial class MainWindow : Window
             double rand3 = Random.Shared.NextDouble() * 360;
             Image img = new()
             {
-                Source = new Bitmap(AssetLoader.Open(new("avares://AvaloniaApplication1/Assets/blackjack.png"))),
+                Source = new Bitmap(AssetLoader.Open(new("avares://STEVE/Assets/blackjack.png"))),
                 RenderTransform = new Rotate3DTransform(
                     rand1,
                     rand2,
