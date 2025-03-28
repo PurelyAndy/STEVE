@@ -9,7 +9,7 @@ using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 
-namespace AvaloniaApplication1.Views;
+namespace STEVE.Views;
 
 public partial class MainWindow : Window
 {

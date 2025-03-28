@@ -1,17 +1,11 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:AvaloniaApplication1.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="1100"
         Width="1000" Height="1100"
-        x:Class="AvaloniaApplication1.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="AvaloniaApplication1" FontFamily="Comic Sans MS">
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+        x:Class="STEVE.Views.MainWindow"
+        Title="STEVE" FontFamily="Comic Sans MS">
 
     <Canvas Width="1000" Height="1100" Name="MainCanvas" Background="White">
         <Grid Canvas.Left="50" Canvas.Top="10" Width="900" Height="1000" RowDefinitions="120 * * * * * 40" ColumnDefinitions="40 * * * * * 40" Name="MainGrid" HorizontalAlignment="Center" VerticalAlignment="Center">
