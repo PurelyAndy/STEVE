@@ -37,11 +37,7 @@ public partial class MainWindow : Window
             {
                 rand2 = Random.Shared.NextDouble() * 360;
             } while (rand2 > 90 - degreesFrom90 && rand2 < 90 + degreesFrom90 || rand2 > 270 - degreesFrom90 && rand2 < 270 + degreesFrom90);
-            double rand3;
-            do
-            {
-                rand3 = Random.Shared.NextDouble() * 360;
-            } while (rand3 > 90 - degreesFrom90 && rand3 < 90 + degreesFrom90 || rand3 > 270 - degreesFrom90 && rand3 < 270 + degreesFrom90);
+            double rand3 = Random.Shared.NextDouble() * 360;
             Image img = new()
             {
                 Source = new Bitmap(AssetLoader.Open(new("avares://AvaloniaApplication1/Assets/blackjack.png"))),
@@ -225,12 +221,13 @@ public partial class MainWindow : Window
         }
     }
 
+    private int _counter;
     private void SaveScreenshot()
     {
         PixelSize size = new((int)MainCanvas.Bounds.Width, (int)MainCanvas.Bounds.Height);
         RenderTargetBitmap renderTarget = new(size);
         renderTarget.Render(MainCanvas);
-        using FileStream file = new("bingo.png", FileMode.Create);
+        using FileStream file = new($"bingo{_counter++}.png", FileMode.Create);
         renderTarget.Save(file, 100);
     }
 }
